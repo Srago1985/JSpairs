@@ -1,0 +1,61 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.matches__game {
+    /* width: 768px;
+    height: 920px; */
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;    
+    perspective: 1000px;
+}
+
+.matches__card {
+    background: wheat;    
+    margin: 5px; 
+    position: relative;
+    box-shadow: 1px 1px 1px rgba(0,0,0,.3);
+    transform: scale(1);
+    transform-style: preserve-3d;
+    transition: transform .3s;
+}
+
+.matches__card:active {
+    transform: scale(.96);
+    transition: transform .3s;
+}
+
+.front__face,
+.back__face {
+    width: 100%;
+    height: 100%;
+    padding: 20px;
+    position: absolute;
+    border-radius: 5px;
+    backface-visibility: hidden;  
+}
+
+.front__face {
+    transform: rotateY(180deg);
+    font-size: 24px;    
+}
+
+.matches__card.rotate {
+    transform: rotateY(180deg);
+}
+
+.reset {
+    /* display: none; */
+    width: 150px;
+    height: 70px;
+}
+

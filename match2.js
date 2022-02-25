@@ -5,7 +5,7 @@
     let input = document.createElement('input');
     input.type = 'number';
     let startButton = document.createElement('button'); 
-    startButton.type = 'submit';
+    /* startButton.type = 'submit'; */
     startButton.innerHTML = 'Начать игру';
     board.classList.add('matches__game');
     input.placeholder = 'Введите четное число от 4 до 8';
@@ -23,11 +23,12 @@
     form,
     startButton;
 
-    let countPairs = (input.value ** 2) / 2;
+    const countPairs = Math.pow(input.value, 2) / 2; //не могу понять, почему возвращает 0 
 
     const getPairs = (countPairs) => {
         let arr = [];
         for (i = 0; i < countPairs; i++) {
+            arr.push(i);
             arr.push(i);            
         }
         return arr
@@ -45,12 +46,32 @@
         return pairs
     }
     
-    
+    const createCards = () => {        
+        let array = createShufflePairs(countPairs); 
+        for(let i = 0; i < array.length; i++) {            
+            let createCard = document.createElement('div');
+            createCard.classList.add('matches__card');
+            createCard.dataset.number = array[i];                                        
+            board.append(createCard);
+            let shirt = document.createElement('img');
+            shirt.src = 'img/shirt.jpg';
+            shirt.classList.add('back__face')
+            createCard.append(shirt);
+            let front = document.createElement('div');
+            front.classList.add('front__face')
+            front.innerHTML = array[i];
+            createCard.append(front);
+             
+        }
+    }
+
+    startButton.addEventListener('click', createCards);
+    startButton.addEventListener('click', function (start) {
+        start.preventDefault();
+    })
 
 
-
-
-/* const cards = document.querySelectorAll('.matches__card');
+const cards = document.querySelectorAll('.matches__card');
 
 let isRotatedCard = false;
 let noMoreTwo = false;
@@ -96,12 +117,12 @@ function resetCards() {
     [firstCard, secondCard] = [null, null]
 }
 
-(function shuffle() {
+/* (function shuffle() {
     cards.forEach(card => {
         let randomPosition = Math.floor(Math.random() * cards.length);
         card.style.order = randomPosition
     });
-})();
+})(); */
 
 cards.forEach(card => card.addEventListener('click', rotateCard));
 
@@ -110,15 +131,10 @@ const btn = document.querySelector('.reset');
 function reloadGame() {
     if (confirm('Хотите начать новую игру?')) {
         btn.classList.remove('active')
-        cards.forEach(card => card.classList.remove('rotate'));
-        cards.forEach(card => {
-            let randomPosition = Math.floor(Math.random() * cards.length);
-            card.style.order = randomPosition
-        });
+        createCards();
     }
 }
 
-btn.addEventListener('click', reloadGame);
+/* btn.addEventListener('click', reloadGame); */
 
-setTimeout(reloadGame, 60000);
- */
+/* setTimeout(reloadGame, 60000); */
