@@ -11,8 +11,7 @@ body {
 }
 
 .matches__game {
-    /* width: 768px;
-    height: 920px; */
+    width: 1192px;   
     margin: auto;
     display: flex;
     flex-wrap: wrap;    
@@ -53,9 +52,6 @@ body {
     transform: rotateY(180deg);
 }
 
-.reset {
-    /* display: none; */
-    width: 150px;
-    height: 70px;
+.hidden {
+    display: none;
 }
-
